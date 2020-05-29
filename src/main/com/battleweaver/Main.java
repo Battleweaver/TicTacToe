@@ -37,8 +37,11 @@ public class Main {
                 String input = scanner.next();
                 if (input.matches("^[+-]?\\d+$")) {
                     int playerQuantity = Integer.parseInt(input);
-                    if (playerQuantity < 1) {
-                        System.out.println("Too little. 1 or 2 players are allowed");
+                    if (playerQuantity < 0) {
+                        System.out.println("Too little. 0, 1 or 2 players are allowed");
+                    } else if (playerQuantity == 0){
+                        game = new Game("", 0, boardSize);
+                        break;
                     } else if (playerQuantity == 1) {
                         System.out.println("Enter your symbol X or O (letter, not digit)");
                         try {
@@ -50,7 +53,7 @@ public class Main {
                                     game = new Game("Player1", 0, boardSize);
                                     break;
                                 } else if (inputChar == 'O') {
-                                    game = new Game("Player1", 1, boardSize);
+                                    game = new Game("Player2", 1, boardSize);
                                     break;
                                 } else {
                                     System.out.println("Please, input X or O");
@@ -65,10 +68,10 @@ public class Main {
                         game = new Game("Player1", "Player2", boardSize);
                         break;
                     } else {
-                        System.out.println("Too many. 1 or 2 players are allowed");
+                        System.out.println("Too many. 0, 1 or 2 players are allowed");
                     }
                 }else {
-                    System.out.println("Try input a number 1 or 2");
+                    System.out.println("Try input a number 0, 1 or 2");
                 }
 
             } catch (Exception ignored) {

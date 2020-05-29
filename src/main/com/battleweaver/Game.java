@@ -18,9 +18,11 @@ public class Game {
     public Game(String player, int playerIndex, int grid) {
         SIZE = Math.max(grid, 2);
         board = new String[SIZE][SIZE];
-        switch (playerIndex) {
-            case 0 -> players[playerIndex] = new Player(player, "X");
-            case 1 -> players[playerIndex] = new Player(player, "O");
+        if (!player.isEmpty()) {
+            switch (playerIndex) {
+                case 0 -> players[playerIndex] = new Player(player, "X");
+                case 1 -> players[playerIndex] = new Player(player, "O");
+            }
         }
         currPlayer = players[0];
         clearBoard();
