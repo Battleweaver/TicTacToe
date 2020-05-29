@@ -14,14 +14,36 @@ public class Main {
             System.out.println("Enter number of human players");
             try {
                 String input = scanner.next();
-                switch (Integer.parseInt(input)) {
-                    case 1:
+                if (input.matches("^[+-]?\\d+$")) {
+                    int playerQuantity = Integer.parseInt(input);
+                    if (playerQuantity < 1) {
+                        System.out.println("Too little. 1 or 2 players are allowed");
+                    } else if (playerQuantity == 1) {
                         game = new Game("Player1", GRID);
                         break loop;
-                    case 2:
+                    } else if (playerQuantity == 2) {
                         game = new Game("Player1", "Player2", GRID);
                         break loop;
+                    } else if (playerQuantity > 2) {
+                        System.out.println(" Too many. 1 or 2 players are allowed");
+                    }
+                }else {
+                    System.out.println("Try input a number 1 or 2");
                 }
+
+//                switch (Integer.parseInt(input)) {
+//                    case 0:
+//                        System.out.println("Too little");
+//                        break;
+//                    case 1:
+//                        game = new Game("Player1", GRID);
+//                        break loop;
+//                    case 2:
+//                        game = new Game("Player1", "Player2", GRID);
+//                        break loop;
+//                    default:
+//                        System.out.println("1 or 2 players are allowed");
+//                }
             } catch (Exception e) {
             }
         }
