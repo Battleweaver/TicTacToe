@@ -16,7 +16,7 @@ public class Game {
     }
 
     public Game(String player, int grid) {
-        SIZE = grid < 3 ? 3 : grid;
+        SIZE = grid < 2 ? 2 : grid;
         board = new String[SIZE][SIZE];
         players[0] = new Player(player, "X");
         currPlayer = players[0];
