@@ -1,4 +1,4 @@
-package com.battleweaver;
+package main.com.battleweaver;
 
 import java.util.Scanner;
 
