@@ -2,7 +2,7 @@ package main.com.battleweaver;
 
 public class Move {
 
-    private int row;
+    private final int row;
 
     public int getRow() {
         return row;
@@ -23,14 +23,14 @@ public class Move {
     }
 
 
-    private int column;
+    private final int column;
 
 
     public int getScore() {
-        return score;
+        return this.score;
     }
 
-    private int score;
+    private final int score;
 
     public Move(int row, int column, int score) {
         this.row = row;

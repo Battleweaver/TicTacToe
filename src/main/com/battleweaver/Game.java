@@ -11,14 +11,17 @@ public class Game {
     private Player currPlayer = null;
 
     public Game(String player1, String player2, int grid) {
-        this(player1, grid);
+        this(player1, 0, grid);
         players[1] = new Player(player2, "O");
     }
 
-    public Game(String player, int grid) {
-        SIZE = grid < 2 ? 2 : grid;
+    public Game(String player, int playerIndex, int grid) {
+        SIZE = Math.max(grid, 2);
         board = new String[SIZE][SIZE];
-        players[0] = new Player(player, "X");
+        switch (playerIndex) {
+            case 0 -> players[playerIndex] = new Player(player, "X");
+            case 1 -> players[playerIndex] = new Player(player, "O");
+        }
         currPlayer = players[0];
         clearBoard();
     }
@@ -62,9 +65,7 @@ public class Game {
     private boolean isValidMove(int xPosition, int yPosition) {
         if (xPosition >= SIZE || yPosition >= SIZE || xPosition < 0 || yPosition < 0)
             return false;
-        if (!board[xPosition][yPosition].equals(FILLER))
-            return false;
-        return true;
+        return board[xPosition][yPosition].equals(FILLER);
     }
 
 
@@ -73,9 +74,9 @@ public class Game {
     }
 
     private void printBoard() {
-        String header = "  ";
+        StringBuilder header = new StringBuilder("  ");
         for (int j = 0; j < SIZE; j++) {
-            header += "|" + (j + 1);
+            header.append("|").append(j + 1);
         }
         System.out.println(header);
         for (int j = 0; j < SIZE * 3; j++) {
@@ -83,9 +84,9 @@ public class Game {
         }
         System.out.println();
         for (int i = 0; i < SIZE; i++) {
-            String row = (i + 1) + " ";
+            StringBuilder row = new StringBuilder((i + 1) + " ");
             for (int j = 0; j < SIZE; j++) {
-                row += "|" + board[i][j];
+                row.append("|").append(board[i][j]);
             }
             System.out.println(row);
             for (int j = 0; j < SIZE * 3; j++) {
